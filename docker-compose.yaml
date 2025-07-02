@@ -23,6 +23,17 @@ services:
       - POSTGRES_DB=hexag
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    
+  rabbitmq:
+    image: rabbitmq:4.1-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
 
   prisma-studio:
     build: .
@@ -40,3 +51,4 @@ services:
 
 volumes:
   postgres_data:
+  rabbitmq_data:
