@@ -1,0 +1,29 @@
+{
+    "name": "hexag",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "dev": "bun run --watch src/main.ts",
+        "build": "bun run prisma generate --schema=src/infrastructure/db/prisma/schema.prisma",
+        "start": "bun run src/main.ts",
+        "migrate": "bun run prisma migrate dev --name init --schema=src/infrastructure/db/prisma/schema.prisma",
+        "generate": "bun run prisma generate --schema=src/infrastructure/db/prisma/schema.prisma",
+        "studio": "bun run prisma studio --schema=src/infrastructure/db/prisma/schema.prisma"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.30.1",
+        "eslint": "^9.30.1",
+        "globals": "^16.3.0",
+        "prisma": "^6.10",
+        "typescript": "^5.8",
+        "typescript-eslint": "^8.35.1"
+    },
+    "peerDependencies": {
+        "@types/express": "^5.0",
+        "express": "^5.0"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.10"
+    }
+}

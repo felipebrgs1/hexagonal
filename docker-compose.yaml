@@ -1,0 +1,42 @@
+services:
+  hexag:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/hexag
+    volumes:
+      - .:/app
+      - /app/node_modules  # Evita sobrescrever node_modules
+    depends_on:
+      - postgres
+    command: sh -c "bun run migrate && bun run start"
+
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=hexag
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  prisma-studio:
+    build: .
+    ports:
+      - "5555:5555"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/hexag
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    command: bun prisma studio --schema=src/infrastructure/db/prisma/schema.prisma
+    profiles:
+      - tools 
+
+volumes:
+  postgres_data:
