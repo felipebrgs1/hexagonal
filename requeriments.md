@@ -10,10 +10,10 @@ Sistema de pedidos com **Arquitetura Hexagonal**, **Domain Events**, PostgreSQL 
 ## 📅 **FASE 1: Fundação e Infraestrutura (Semana 1)**
 
 ### ✅ **Sprint 1.1: Setup Base **
-- [ ] Inicializar projeto Node.js + TypeScript
-- [ ] Setup Jest + supertest para testes
-- [ ] Docker Compose (PostgreSQL + RabbitMQ + App)
-- [ ] Estrutura hexagonal de pastas:
+- [x] Inicializar projeto Node.js + TypeScript
+- [x] Setup Jest + supertest para testes
+- [x] Docker Compose (PostgreSQL + RabbitMQ + App)
+- [x] Estrutura hexagonal de pastas:
   ```
   src/
   ├── domain/           # Entidades, VOs, Events
@@ -21,18 +21,18 @@ Sistema de pedidos com **Arquitetura Hexagonal**, **Domain Events**, PostgreSQL 
   ├── infrastructure/   # Adapters (DB, Queue, HTTP)
   └── tests/           # Testes integrados
   ```
-- [ ] Scripts npm e Makefile
+- [x] Scripts npm e Makefile
 
 ### ✅ **Sprint 1.2: Infraestrutura Base **
-- [ ] **PostgreSQL Adapter**
-  - Conexão e migrations (node-pg-migrate)
+- [x] **PostgreSQL Adapter**
+  - Conexão e migrations (Prisma)
   - Repository pattern base
-- [ ] **RabbitMQ Adapter** 
+- [x] **RabbitMQ Adapter** 
   - Publisher/Consumer pattern
   - Connection management
-- [ ] **Event Dispatcher** para Domain Events
-- [ ] **Logger** estruturado (winston)
-- [ ] Testes de infraestrutura
+- [x] **Event Dispatcher** para Domain Events
+- [x] **Logger** estruturado (winston)
+- [x] Testes de infraestrutura
 
 ---
 
