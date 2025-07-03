@@ -39,25 +39,25 @@ Sistema de pedidos com **Arquitetura Hexagonal**, **Domain Events**, PostgreSQL 
 ## 📅 **FASE 2: Domínio e Domain Events (Semana 2)**
 
 ### ✅ **Sprint 2.1: Domain Core**
-- [ ] **Value Objects**:
+- [x] **Value Objects**:
   - `Money` (valor + moeda)
   - `ItemPedido` (produto, quantidade, preço)
   - `StatusPedido` enum
-- [ ] **Entidade `Pedido`** (Aggregate Root):
+- [x] **Entidade `Pedido`** (Aggregate Root):
   - Propriedades básicas
   - Métodos de negócio
   - Validações de invariantes
-- [ ] **Testes unitários do domínio** (100% cobertura)
+- [x] **Testes unitários do domínio** (100% cobertura)
 
 ### ✅ **Sprint 2.2: Domain Events**
-- [ ] **Base Events**:
+- [x] **Base Events**:
   - `DomainEvent` interface
   - `PedidoCriado`
   - `ItemAdicionado`
   - `StatusAlterado`
   - `PedidoPago`
-- [ ] **Event Dispatcher** no domínio
-- [ ] **Testes dos eventos** (criação, dispatch)
+- [x] **Event Dispatcher** no domínio
+- [x] **Testes dos eventos** (criação, dispatch)
 
 ---
 
