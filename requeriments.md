@@ -64,27 +64,27 @@ Sistema de pedidos com **Arquitetura Hexagonal**, **Domain Events**, PostgreSQL 
 ## 📅 **FASE 3: Use Cases e Ports (Semana 3)**
 
 ### ✅ **Sprint 3.1: Ports (Interfaces)**
-- [ ] `IPedidoRepository` (port secundária)
-- [ ] `IEventPublisher` (port secundária)
-- [ ] `INotificacaoService` (port secundária)
-- [ ] `ICalculadoraDesconto` (port secundária)
+- [x] `IPedidoRepository` (port secundária)
+- [x] `IEventPublisher` (port secundária)
+- [x] `INotificacaoService` (port secundária)
+- [x] `ICalculadoraDesconto` (port secundária)
 
 ### ✅ **Sprint 3.2: Use Cases Core**
-- [ ] **`CriarPedidoUseCase`**
+- [x] **`CriarPedidoUseCase`**
   - Validações
   - Criação do agregado
   - Dispatch de `PedidoCriado`
-- [ ] **`AdicionarItemUseCase`**
+- [x] **`AdicionarItemUseCase`**
   - Validar item
   - Adicionar ao pedido
   - Recalcular total
   - Dispatch `ItemAdicionado`
-- [ ] **Testes unitários dos use cases** (mocks)
+- [x] **Testes unitários dos use cases** (mocks)
 
 ### ✅ **Sprint 3.3: Use Cases Avançados**
-- [ ] **`AtualizarStatusUseCase`**
-- [ ] **`CalcularTotalUseCase`** (com descontos)
-- [ ] Testes com cenários complexos
+- [x] **`AtualizarStatusUseCase`**
+- [x] **`CalcularTotalUseCase`** (com descontos)
+- [x] Testes com cenários complexos
 
 ---
 

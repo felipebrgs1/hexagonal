@@ -34,8 +34,8 @@ describe('Pedido Entity', () => {
       
       const events = pedido.domainEvents;
       expect(events).toHaveLength(1);
-      expect(events[0].eventType).toBe('PedidoCriado');
-      expect(events[0].payload).toMatchObject({
+      expect(events[0]?.eventType).toBe('PedidoCriado');
+      expect(events[0]?.payload).toMatchObject({
         pedidoId: pedido.id,
         clienteId: 'cliente-123'
       });
@@ -66,7 +66,7 @@ describe('Pedido Entity', () => {
       
       const events = pedido.domainEvents;
       expect(events).toHaveLength(1);
-      expect(events[0].eventType).toBe('ItemAdicionado');
+      expect(events[0]?.eventType).toBe('ItemAdicionado');
     });
 
     it('should combine quantities when adding same produto', () => {
