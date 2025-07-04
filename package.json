@@ -14,7 +14,12 @@
         "test:watch": "jest --watch",
         "test:coverage": "jest --coverage",
         "test:integration": "jest --testPathPattern=integration",
-        "test:unit": "jest --testPathPattern=unit"
+        "test:unit": "jest --testPathPattern=unit",
+        "benchmark": "./benchmark/run_benchmark.sh",
+        "benchmark:quick": "artillery quick --count 10 --num 100 http://localhost:3000/health",
+        "benchmark:sustained": "artillery run benchmark/quick-test.yml",
+        "benchmark:full": "artillery run benchmark/load-test.yml",
+        "benchmark:report": "artillery run benchmark/load-test.yml --output benchmark/results.json && artillery report benchmark/results.json --output benchmark/report.html"
     },
     "devDependencies": {
         "@eslint/js": "^9.30.1",
@@ -24,6 +29,7 @@
         "@types/supertest": "^2.0.12",
         "@types/uuid": "^9.0.7",
         "@types/amqplib": "^0.10.1",
+        "artillery": "^2.0.23",
         "dotenv": "^16.3.1",
         "eslint": "^9.30.1",
         "globals": "^16.3.0",

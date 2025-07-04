@@ -1,0 +1,117 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    # Warm-up phase
+    - duration: 10
+      arrivalRate: 5
+      name: "Warm-up"
+    
+    # Low load test
+    - duration: 30
+      arrivalRate: 10
+      name: "Low load - 10 QPS"
+    
+    # Medium load test
+    - duration: 30
+      arrivalRate: 50
+      name: "Medium load - 50 QPS"
+    
+    # High load test
+    - duration: 30
+      arrivalRate: 100
+      name: "High load - 100 QPS"
+    
+    # Peak load test
+    - duration: 30
+      arrivalRate: 200
+      name: "Peak load - 200 QPS"
+    
+    # Stress test
+    - duration: 30
+      arrivalRate: 500
+      name: "Stress test - 500 QPS"
+
+  payload:
+    path: './data/pedidos.csv'
+    fields:
+      - 'clienteId'
+      - 'produto'
+      - 'quantidade'
+      - 'preco'
+
+  variables:
+    pedidoIds: []
+
+scenarios:
+  - name: "Criar Pedido"
+    weight: 60
+    flow:
+      - post:
+          url: "/pedidos"
+          headers:
+            Content-Type: "application/json"
+          json:
+            clienteId: "{{ clienteId }}"
+            itens:
+              - produto: "{{ produto }}"
+                quantidade: "{{ quantidade }}"
+                preco: "{{ preco }}"
+          capture:
+            - json: "$.id"
+              as: "pedidoId"
+          expect:
+            - statusCode: 201
+            - hasProperty: "id"
+
+  - name: "Consultar Pedido"
+    weight: 30
+    flow:
+      - think: 1
+      - get:
+          url: "/pedidos/{{ $randomString() }}"
+          expect:
+            - statusCode: [200, 404]
+
+  - name: "Health Check"
+    weight: 10
+    flow:
+      - get:
+          url: "/health"
+          expect:
+            - statusCode: 200
+
+  - name: "Adicionar Item ao Pedido"
+    weight: 20
+    flow:
+      - post:
+          url: "/pedidos"
+          headers:
+            Content-Type: "application/json"
+          json:
+            clienteId: "{{ clienteId }}"
+            itens:
+              - produto: "Produto Inicial"
+                quantidade: 1
+                preco: 10.00
+          capture:
+            - json: "$.id"
+              as: "novoPedidoId"
+      - think: 1
+      - post:
+          url: "/pedidos/{{ novoPedidoId }}/itens"
+          headers:
+            Content-Type: "application/json"
+          json:
+            produto: "{{ produto }}"
+            quantidade: "{{ quantidade }}"
+            preco: "{{ preco }}"
+          expect:
+            - statusCode: [200, 201]
+
+plugins:
+  expect: {}
+  metrics-by-endpoint: {}
+  publish-metrics:
+    - type: "cloudwatch"
+      region: "us-east-1"
+      enabled: false

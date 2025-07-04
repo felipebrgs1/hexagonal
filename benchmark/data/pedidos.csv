@@ -1,0 +1,21 @@
+clienteId,produto,quantidade,preco
+cliente-001,Notebook Dell,1,2500.00
+cliente-002,Mouse Logitech,2,45.90
+cliente-003,Teclado Mecânico,1,180.00
+cliente-004,Monitor 4K,1,1200.00
+cliente-005,Webcam HD,1,150.00
+cliente-006,Headset Gamer,1,320.00
+cliente-007,SSD 1TB,1,400.00
+cliente-008,Memória RAM 16GB,2,200.00
+cliente-009,Placa de Vídeo RTX,1,3500.00
+cliente-010,Processador i7,1,1800.00
+cliente-011,Smartphone,1,800.00
+cliente-012,Tablet,1,600.00
+cliente-013,Smartwatch,1,450.00
+cliente-014,Fone Bluetooth,1,120.00
+cliente-015,Carregador,2,25.00
+cliente-016,Cabo USB-C,3,15.00
+cliente-017,Hub USB,1,80.00
+cliente-018,Mousepad,1,30.00
+cliente-019,Suporte Monitor,1,120.00
+cliente-020,Cadeira Gamer,1,800.00

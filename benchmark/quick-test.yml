@@ -1,0 +1,19 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 60
+      arrivalRate: 50
+      name: "Steady load - 50 QPS"
+
+scenarios:
+  - name: "Health Check Load Test"
+    weight: 100
+    flow:
+      - get:
+          url: "/health"
+          expect:
+            - statusCode: 200
+
+plugins:
+  expect: {}
+  metrics-by-endpoint: {}

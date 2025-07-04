@@ -230,3 +230,60 @@ Sistema de pedidos com **Arquitetura Hexagonal**, **Domain Events**, PostgreSQL 
 **Queue**: RabbitMQ + amqplib
 **Tests**: Jest + supertest + testcontainers
 **Infra**: Docker + Docker Compose
+
+---
+
+## 🚀 **EXTRA: Teste de Performance (QPS Benchmark)**
+
+### **Objetivo**
+Medir a performance da aplicação em cenários realistas de carga, focando em:
+- **QPS (Queries Per Second)** para criação de pedidos
+- **Latência** média e percentis (P95, P99)
+- **Throughput** da aplicação sob carga
+- **Degradação** de performance com aumento de carga
+
+### **Cenários de Teste**
+1. **Criação de Pedidos** (POST /pedidos)
+   - Carga crescente: 10, 50, 100, 200, 500 QPS
+   - Duração: 30 segundos por cenário
+   - Payload: Pedido com 1-3 itens
+
+2. **Adição de Itens** (POST /pedidos/:id/itens)
+   - Carga: 100 QPS constante
+   - Pedidos pré-existentes
+   - Duração: 60 segundos
+
+3. **Consulta de Pedidos** (GET /pedidos/:id)
+   - Carga: 500 QPS constante
+   - Cache vs sem cache
+   - Duração: 30 segundos
+
+### **Métricas Esperadas**
+- **Criação de Pedidos**: >200 QPS com P95 < 200ms
+- **Consultas**: >500 QPS com P95 < 50ms
+- **Memory Usage**: < 512MB durante picos
+- **CPU Usage**: < 80% em carga máxima
+
+### **Stack de Benchmark**
+- **Tool**: Artillery.js para load testing
+- **Monitoring**: Node.js built-in performance hooks
+- **Reports**: HTML + JSON com gráficos
+- **CI Integration**: Threshold-based pass/fail
+
+### **Implementação**
+```bash
+# Instalar ferramenta de benchmark
+npm install --save-dev artillery
+
+# Executar testes de carga
+npm run benchmark
+
+# Gerar relatório
+npm run benchmark:report
+```
+
+### **Configuração de Teste**
+- **Environment**: Docker Compose local
+- **Database**: PostgreSQL com connection pool
+- **Queue**: RabbitMQ com prefetch configurado
+- **App**: Node.js com cluster mode (4 workers)
