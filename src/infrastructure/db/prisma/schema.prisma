@@ -13,7 +13,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Test {
-  id   String @id @default(uuid())
-  name String
+model Pedido {
+  id              String       @id @default(uuid())
+  clienteId       String       @map("cliente_id")
+  status          String
+  dataCriacao     DateTime     @default(now()) @map("data_criacao")
+  dataAtualizacao DateTime     @updatedAt @map("data_atualizacao")
+  observacoes     String?
+  itens           ItemPedido[]
+
+  @@index([clienteId])
+  @@index([status])
+  @@index([dataCriacao])
+  @@map("pedidos")
+}
+
+model ItemPedido {
+  id            String  @id @default(uuid())
+  pedidoId      String  @map("pedido_id")
+  produtoId     String  @map("produto_id")
+  quantidade    Int
+  precoUnitario Decimal @map("preco_unitario")
+  moeda         String
+  pedido        Pedido  @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+
+  @@index([pedidoId])
+  @@index([produtoId])
+  @@map("itens_pedido")
 }

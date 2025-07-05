@@ -25,5 +25,7 @@ export default {
     coverageDirectory: 'coverage',
     coverageReporters: ['text', 'lcov', 'html'],
     setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
-    testTimeout: 10000
+    testTimeout: 10000,
+    // Run integration and e2e tests serially to avoid database conflicts
+    maxWorkers: 1
 };
