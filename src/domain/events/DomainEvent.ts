@@ -132,3 +132,40 @@ export class QuantidadeItemAlterada extends BaseDomainEvent {
     super('QuantidadeItemAlterada', aggregateId, payload);
   }
 }
+
+export class DescontoAplicado extends BaseDomainEvent {
+  constructor(aggregateId: string, payload: {
+    pedidoId: string;
+    tipoDesconto: string;
+    valorDesconto: Record<string, unknown>;
+    valorAnterior: Record<string, unknown>;
+    valorFinal: Record<string, unknown>;
+    cupomUtilizado?: string;
+  }) {
+    super('DescontoAplicado', aggregateId, payload);
+  }
+}
+
+export class PedidoEnviado extends BaseDomainEvent {
+  constructor(aggregateId: string, payload: {
+    pedidoId: string;
+    clienteId: string;
+    dataEnvio: string;
+    codigoRastreamento?: string;
+    transportadora?: string;
+  }) {
+    super('PedidoEnviado', aggregateId, payload);
+  }
+}
+
+export class PedidoEntregueEvent extends BaseDomainEvent {
+  constructor(aggregateId: string, payload: {
+    pedidoId: string;
+    clienteId: string;
+    dataEntrega: string;
+    assinatura?: string;
+    observacoes?: string;
+  }) {
+    super('PedidoEntregue', aggregateId, payload);
+  }
+}

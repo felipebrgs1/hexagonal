@@ -125,26 +125,26 @@ Sistema de pedidos com **Arquitetura Hexagonal**, **Domain Events**, PostgreSQL 
 ## 📅 **FASE 5: Regras de Negócio Avançadas (Semana 5)**
 
 ### ✅ **Sprint 5.1: Sistema de Descontos**
-- [ ] **Estratégias de Desconto**:
+- [x] **Estratégias de Desconto**:
   - Desconto por quantidade
   - Desconto por valor total
   - Cupom de desconto
-- [ ] **`CalculadoraDesconto`** service
-- [ ] **Events**: `DescontoAplicado`
-- [ ] **Testes das regras** de desconto
+- [x] **`CalculadoraDesconto`** service
+- [x] **Events**: `DescontoAplicado`
+- [x] **Testes das regras** de desconto
 
 ### ✅ **Sprint 5.2: Workflow Completo**
-- [ ] **Máquina de Estados** para status
-- [ ] **Validações de transição**
-- [ ] **Events**: `PedidoEnviado`, `PedidoEntregue`
-- [ ] **Saga pattern** para operações complexas
-- [ ] **Testes de fluxo completo**
+- [x] **Máquina de Estados** para status
+- [x] **Validações de transição**
+- [x] **Events**: `PedidoEnviado`, `PedidoEntregue`
+- [x] **Saga pattern** para operações complexas
+- [x] **Testes de fluxo completo**
 
 ### ✅ **Sprint 5.3: Notificações Mock**
-- [ ] **Service de Estoque** (mock)
-- [ ] **Handler** para baixa no estoque
-- [ ] **Compensação** em caso de erro
-- [ ] Testes de integração
+- [x] **Service de Estoque** (mock)
+- [x] **Handler** para baixa no estoque
+- [x] **Compensação** em caso de erro
+- [x] Testes de integração
 
 ---
 

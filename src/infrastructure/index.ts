@@ -28,3 +28,8 @@ export { BaseRepository } from './db/BaseRepository.js';
 
 export type { IDatabaseConnection } from './db/DatabaseConnection.js';
 export { DatabaseConnection } from './db/DatabaseConnection.js';
+
+// Infrastructure Services and Adapters
+export * from './discount/CalculadoraDescontoAdapter.js';
+export * from './services/MockServicoEstoque.js';
+export * from './events/EstoqueEventHandler.js';

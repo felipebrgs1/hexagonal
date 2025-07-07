@@ -19,3 +19,8 @@ export {
   PedidoPago,
   QuantidadeItemAlterada
 } from './events/DomainEvent.js';
+
+// Domain Services
+export * from './services/CalculadoraDesconto.js';
+export * from './services/MaquinaEstadosPedido.js';
+export * from './services/SagaOrchestrator.js';
