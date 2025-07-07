@@ -91,34 +91,34 @@ Sistema de pedidos com **Arquitetura Hexagonal**, **Domain Events**, PostgreSQL 
 ## 📅 **FASE 4: Adapters e Integrações (Semana 4)**
 
 ### ✅ **Sprint 4.1: Database Adapters**
-- [ ] **PostgreSQL Repository**
+- [x] **PostgreSQL Repository**
   - `PedidoRepository` implementação
   - Queries otimizadas
   - Transações
-- [ ] **Migrations**
+- [x] **Migrations**
   - Tabela `pedidos`
   - Tabela `itens_pedido`
   - Índices
-- [ ] **Testes de integração** (testcontainers)
+- [x] **Testes de integração** (sem testcontainers)
 
 ### ✅ **Sprint 4.2: Message Queue Adapters**
-- [ ] **RabbitMQ Publisher**
+- [x] **RabbitMQ Publisher**
   - Publicar domain events
   - Dead letter queue
   - Retry policy
-- [ ] **Event Handlers**
+- [x] **Event Handlers**
   - `NotificarEstoque` handler
   - `EnviarEmail` handler (mock)
-- [ ] **Testes de mensageria**
+- [x] **Testes de mensageria**
 
 ### ✅ **Sprint 4.3: HTTP Adapter**
-- [ ] **REST Controllers**
+- [x] **REST Controllers**
   - POST `/pedidos`
   - POST `/pedidos/:id/itens`
   - PUT `/pedidos/:id/status`
   - GET `/pedidos/:id`
-- [ ] Middleware de validação
-- [ ] Testes E2E
+- [x] Middleware de validação
+- [x] Testes E2E
 
 ---
 
