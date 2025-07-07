@@ -1,9 +1,9 @@
-import { CriarPedidoUseCase } from '../../../src/application/use-cases/CriarPedidoUseCase.js';
+import { CriarPedidoUseCase } from '@/application/use-cases/CriarPedidoUseCase.js';
 import { 
   CriarPedidoRequest, 
   IPedidoRepository, 
   IEventPublisher 
-} from '../../../src/application/ports/index.js';
+} from '@/application/ports/index.js';
 
 describe('CriarPedidoUseCase', () => {
   let useCase: CriarPedidoUseCase;

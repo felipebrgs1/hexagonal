@@ -1,5 +1,5 @@
-import { IEventPublisher } from '../../application/ports/index.js';
-import { DomainEvent } from '../../domain/events/DomainEvent.js';
+import { IEventPublisher } from '@/application/ports/index.js';
+import { DomainEvent } from '@/domain/events/DomainEvent.js';
 import { IMessagePublisher } from '../messaging/RabbitMQAdapter.js';
 import type { ILogger } from '../logger/Logger.js';
 

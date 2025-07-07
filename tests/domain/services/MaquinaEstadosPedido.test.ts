@@ -1,8 +1,8 @@
-import { MaquinaEstadosPedido } from '../../../src/domain/services/MaquinaEstadosPedido.js';
-import { StatusPedido } from '../../../src/domain/value-objects/StatusPedido.js';
-import { Pedido } from '../../../src/domain/entities/Pedido.js';
-import { ItemPedido } from '../../../src/domain/value-objects/ItemPedido.js';
-import { Money } from '../../../src/domain/value-objects/Money.js';
+import { MaquinaEstadosPedido } from '@/domain/services/MaquinaEstadosPedido.js';
+import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
+import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
+import { Money } from '@/domain/value-objects/Money.js';
 
 describe('MaquinaEstadosPedido', () => {
   let maquinaEstados: MaquinaEstadosPedido;

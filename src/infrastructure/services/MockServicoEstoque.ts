@@ -1,4 +1,4 @@
-import { Money } from '../../domain/value-objects/Money.js';
+import { Money } from '@/domain/value-objects/Money.js';
 
 export interface IProdutoEstoque {
   id: string;

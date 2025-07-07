@@ -1,10 +1,10 @@
 import { PrismaClient, Prisma } from '@prisma/client';
-import { IPedidoRepository } from '../../application/ports/index.js';
-import { Pedido } from '../../domain/entities/Pedido.js';
-import { ItemPedido, ProdutoInfo } from '../../domain/value-objects/ItemPedido.js';
-import { Money, Moeda } from '../../domain/value-objects/Money.js';
-import { StatusPedido, StatusPedidoVO } from '../../domain/value-objects/StatusPedido.js';
-import type { ILogger } from '../logger/Logger.js';
+import { IPedidoRepository } from '@/application/ports/index.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
+import { ItemPedido, ProdutoInfo } from '@/domain/value-objects/ItemPedido.js';
+import { Money, Moeda } from '@/domain/value-objects/Money.js';
+import { StatusPedido, StatusPedidoVO } from '@/domain/value-objects/StatusPedido.js';
+import type { ILogger } from '@/infrastructure/logger/Logger.js';
 
 type PedidoWithItens = Prisma.PedidoGetPayload<{
   include: { itens: true }

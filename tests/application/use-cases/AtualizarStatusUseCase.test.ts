@@ -1,11 +1,11 @@
-import { AtualizarStatusUseCase } from '../../../src/application/use-cases/AtualizarStatusUseCase.js';
+import { AtualizarStatusUseCase } from '@/application/use-cases/AtualizarStatusUseCase.js';
 import { 
   AtualizarStatusRequest, 
   IPedidoRepository, 
   IEventPublisher 
-} from '../../../src/application/ports/index.js';
-import { Pedido } from '../../../src/domain/entities/Pedido.js';
-import { StatusPedido } from '../../../src/domain/value-objects/StatusPedido.js';
+} from '@/application/ports/index.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
+import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
 
 describe('AtualizarStatusUseCase', () => {
   let useCase: AtualizarStatusUseCase;

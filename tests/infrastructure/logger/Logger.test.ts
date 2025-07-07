@@ -1,4 +1,4 @@
-import { logger } from '../../../src/infrastructure/logger/Logger';
+import { logger } from '@/infrastructure/logger/Logger';
 
 describe('Logger', () => {
   it('should log messages without errors', () => {

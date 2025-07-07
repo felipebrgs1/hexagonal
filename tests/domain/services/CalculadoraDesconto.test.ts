@@ -1,7 +1,7 @@
-import { CalculadoraDescontoService, DescontoPorQuantidadeStrategy, DescontoPorValorTotalStrategy, DescontoPorCupomStrategy } from '../../../src/domain/services/CalculadoraDesconto.js';
-import { Money } from '../../../src/domain/value-objects/Money.js';
-import { Pedido } from '../../../src/domain/entities/Pedido.js';
-import { ItemPedido } from '../../../src/domain/value-objects/ItemPedido.js';
+import { CalculadoraDescontoService, DescontoPorQuantidadeStrategy, DescontoPorValorTotalStrategy, DescontoPorCupomStrategy } from '@/domain/services/CalculadoraDesconto.js';
+import { Money } from '@/domain/value-objects/Money.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
+import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
 
 describe('CalculadoraDesconto Service', () => {
   let calculadoraService: CalculadoraDescontoService;

@@ -1,4 +1,4 @@
-import { StatusPedido, StatusPedidoVO } from '../../../src/domain/value-objects/StatusPedido.js';
+import { StatusPedido, StatusPedidoVO } from '@/domain/value-objects/StatusPedido.js';
 
 describe('StatusPedido Value Object', () => {
   describe('Construction', () => {

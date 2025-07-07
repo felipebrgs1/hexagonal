@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-import { CriarPedidoUseCase } from '../../application/use-cases/CriarPedidoUseCase.js';
-import { AdicionarItemUseCase } from '../../application/use-cases/AdicionarItemUseCase.js';
-import { AtualizarStatusUseCase } from '../../application/use-cases/AtualizarStatusUseCase.js';
-import { IPedidoRepository } from '../../application/ports/index.js';
-import { StatusPedido } from '../../domain/value-objects/StatusPedido.js';
-import type { ILogger } from '../../infrastructure/logger/Logger.js';
+import { CriarPedidoUseCase } from '@/application/use-cases/CriarPedidoUseCase.js';
+import { AdicionarItemUseCase } from '@/application/use-cases/AdicionarItemUseCase.js';
+import { AtualizarStatusUseCase } from '@/application/use-cases/AtualizarStatusUseCase.js';
+import { IPedidoRepository } from '@/application/ports/index.js';
+import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
+import type { ILogger } from '@/infrastructure/logger/Logger.js';
 
 export interface CreatePedidoRequest {
   clienteId: string;

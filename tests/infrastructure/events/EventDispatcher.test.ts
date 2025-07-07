@@ -1,4 +1,4 @@
-import { EventDispatcher, BaseDomainEvent } from '../../../src/infrastructure/events/EventDispatcher';
+import { EventDispatcher, BaseDomainEvent } from '@/infrastructure/events/EventDispatcher';
 
 describe('EventDispatcher', () => {
   let eventDispatcher: EventDispatcher;

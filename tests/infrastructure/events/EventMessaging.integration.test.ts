@@ -1,9 +1,9 @@
-import { RabbitMQEventPublisher } from '../../../src/infrastructure/events/RabbitMQEventPublisher.js';
-import { NotificarEstoqueHandler, EnviarEmailHandler } from '../../../src/infrastructure/events/EventHandlers.js';
-import { MockNotificacaoService } from '../../../src/infrastructure/notifications/MockNotificacaoService.js';
-import { RabbitMQAdapter } from '../../../src/infrastructure/messaging/MockRabbitMQAdapter.js';
-import { PedidoCriado, ItemAdicionado, StatusAlterado } from '../../../src/domain/events/DomainEvent.js';
-import { logger } from '../../../src/infrastructure/logger/Logger.js';
+import { RabbitMQEventPublisher } from '@/infrastructure/events/RabbitMQEventPublisher.js';
+import { NotificarEstoqueHandler, EnviarEmailHandler } from '@/infrastructure/events/EventHandlers.js';
+import { MockNotificacaoService } from '@/infrastructure/notifications/MockNotificacaoService.js';
+import { RabbitMQAdapter } from '@/infrastructure/messaging/MockRabbitMQAdapter.js';
+import { PedidoCriado, ItemAdicionado, StatusAlterado } from '@/domain/events/DomainEvent.js';
+import { logger } from '@/infrastructure/logger/Logger.js';
 
 describe('Event Messaging Integration Tests', () => {
   let rabbitMQ: RabbitMQAdapter;

@@ -1,4 +1,4 @@
-import { Money, Moeda } from '../../../src/domain/value-objects/Money.js';
+import { Money, Moeda } from '@/domain/value-objects/Money.js';
 
 describe('Money Value Object', () => {
   describe('Construction', () => {

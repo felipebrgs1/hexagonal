@@ -1,12 +1,12 @@
-import { CalcularTotalUseCase } from '../../../src/application/use-cases/CalcularTotalUseCase.js';
+import { CalcularTotalUseCase } from '@/application/use-cases/CalcularTotalUseCase.js';
 import { 
   CalcularTotalRequest, 
   IPedidoRepository, 
   ICalculadoraDesconto 
-} from '../../../src/application/ports/index.js';
-import { Pedido } from '../../../src/domain/entities/Pedido.js';
-import { ItemPedido } from '../../../src/domain/value-objects/ItemPedido.js';
-import { Money } from '../../../src/domain/value-objects/Money.js';
+} from '@/application/ports/index.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
+import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
+import { Money } from '@/domain/value-objects/Money.js';
 
 describe('CalcularTotalUseCase', () => {
   let useCase: CalcularTotalUseCase;

@@ -4,10 +4,10 @@ import {
   AdicionarItemResponse,
   IPedidoRepository,
   IEventPublisher
-} from '../ports/index.js';
-import { ItemPedido, ProdutoInfo } from '../../domain/value-objects/ItemPedido.js';
+} from '@/application/ports/index.js';
+import { ItemPedido, ProdutoInfo } from '@/domain/value-objects/ItemPedido.js';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Money, Moeda } from '../../domain/value-objects/Money.js';
+import { Money, Moeda } from '@/domain/value-objects/Money.js';
 
 export class AdicionarItemUseCase implements IAdicionarItemUseCase {
   constructor(

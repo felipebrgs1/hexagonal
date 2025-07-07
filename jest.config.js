@@ -15,6 +15,8 @@ export default {
     // Fixed: replaced invalid moduleNameMapping with correct moduleNameMapper
     moduleNameMapper: {
         '^(\\.{1,2}/.*)\\.js$': '$1',
+        '^@/(.*)\\.(js|ts)$': '<rootDir>/src/$1',
+        '^@/(.*)$': '<rootDir>/src/$1'
     },
     collectCoverageFrom: [
         'src/**/*.ts',

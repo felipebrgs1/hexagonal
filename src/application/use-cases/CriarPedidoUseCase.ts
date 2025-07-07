@@ -1,11 +1,11 @@
-import { Pedido } from '../../domain/entities/Pedido.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
 import { 
   ICriarPedidoUseCase, 
   CriarPedidoRequest, 
   CriarPedidoResponse,
   IPedidoRepository,
   IEventPublisher
-} from '../ports/index.js';
+} from '@/application/ports/index.js';
 
 export class CriarPedidoUseCase implements ICriarPedidoUseCase {
   constructor(

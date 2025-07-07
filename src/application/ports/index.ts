@@ -7,9 +7,9 @@ export interface UseCase<TRequest, TResponse> {
 
 // ==== SECONDARY PORTS ====
 
-import { Pedido } from '../../domain/entities/Pedido.js';
-import { DomainEvent } from '../../domain/events/DomainEvent.js';
-import { Money } from '../../domain/value-objects/Money.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
+import { DomainEvent } from '@/domain/events/DomainEvent.js';
+import { Money } from '@/domain/value-objects/Money.js';
 
 // Repository Port
 export interface IPedidoRepository {

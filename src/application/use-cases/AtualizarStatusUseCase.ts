@@ -4,8 +4,8 @@ import {
   AtualizarStatusResponse,
   IPedidoRepository,
   IEventPublisher
-} from '../ports/index.js';
-import { StatusPedido } from '../../domain/value-objects/StatusPedido.js';
+} from '@/application/ports/index.js';
+import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
 
 export class AtualizarStatusUseCase implements IAtualizarStatusUseCase {
   constructor(

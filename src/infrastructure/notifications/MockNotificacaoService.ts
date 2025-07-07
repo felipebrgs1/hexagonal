@@ -1,4 +1,4 @@
-import { INotificacaoService } from '../../application/ports/index.js';
+import { INotificacaoService } from '@/application/ports/index.js';
 import type { ILogger } from '../logger/Logger.js';
 
 export class MockNotificacaoService implements INotificacaoService {

@@ -1,7 +1,7 @@
-import { EstoqueEventHandler } from '../../../src/infrastructure/events/EstoqueEventHandler.js';
-import { MockServicoEstoque } from '../../../src/infrastructure/services/MockServicoEstoque.js';
-import { DomainEvent } from '../../../src/domain/events/DomainEvent.js';
-import { StatusPedido } from '../../../src/domain/value-objects/StatusPedido.js';
+import { EstoqueEventHandler } from '@/infrastructure/events/EstoqueEventHandler.js';
+import { MockServicoEstoque } from '@/infrastructure/services/MockServicoEstoque.js';
+import { DomainEvent } from '@/domain/events/DomainEvent.js';
+import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
 
 // Helper para criar eventos de teste
 class TestDomainEvent implements DomainEvent {

@@ -4,7 +4,7 @@ import {
   ItemAdicionado, 
   StatusAlterado,
   PedidoConfirmado 
-} from '../../../src/domain/events/DomainEvent.js';
+} from '@/domain/events/DomainEvent.js';
 
 describe('Domain Events', () => {
   describe('BaseDomainEvent', () => {

@@ -1,7 +1,7 @@
-import { CalculadoraDescontoAdapter } from '../../../src/infrastructure/discount/CalculadoraDescontoAdapter.js';
-import { Money } from '../../../src/domain/value-objects/Money.js';
-import { Pedido } from '../../../src/domain/entities/Pedido.js';
-import { ItemPedido } from '../../../src/domain/value-objects/ItemPedido.js';
+import { CalculadoraDescontoAdapter } from '@/infrastructure/discount/CalculadoraDescontoAdapter.js';
+import { Money } from '@/domain/value-objects/Money.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
+import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
 
 describe('CalculadoraDescontoAdapter', () => {
   let adapter: CalculadoraDescontoAdapter;

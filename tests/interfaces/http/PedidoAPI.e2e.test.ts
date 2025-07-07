@@ -1,17 +1,17 @@
 import supertest from 'supertest';
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
-import { PedidoController } from '../../../src/interfaces/http/PedidoController.js';
-import { ValidationMiddleware } from '../../../src/interfaces/http/ValidationMiddleware.js';
-import { createPedidoRoutes } from '../../../src/interfaces/http/PedidoRoutes.js';
-import { CriarPedidoUseCase } from '../../../src/application/use-cases/CriarPedidoUseCase.js';
-import { AdicionarItemUseCase } from '../../../src/application/use-cases/AdicionarItemUseCase.js';
-import { AtualizarStatusUseCase } from '../../../src/application/use-cases/AtualizarStatusUseCase.js';
-import { PedidoRepository } from '../../../src/infrastructure/db/PedidoRepository.js';
-import { RabbitMQEventPublisher } from '../../../src/infrastructure/events/RabbitMQEventPublisher.js';
-import { RabbitMQAdapter } from '../../../src/infrastructure/messaging/MockRabbitMQAdapter.js';
-import { MockNotificacaoService } from '../../../src/infrastructure/notifications/MockNotificacaoService.js';
-import { logger } from '../../../src/infrastructure/logger/Logger.js';
+import { PedidoController } from '@/interfaces/http/PedidoController.js';
+import { ValidationMiddleware } from '@/interfaces/http/ValidationMiddleware.js';
+import { createPedidoRoutes } from '@/interfaces/http/PedidoRoutes.js';
+import { CriarPedidoUseCase } from '@/application/use-cases/CriarPedidoUseCase.js';
+import { AdicionarItemUseCase } from '@/application/use-cases/AdicionarItemUseCase.js';
+import { AtualizarStatusUseCase } from '@/application/use-cases/AtualizarStatusUseCase.js';
+import { PedidoRepository } from '@/infrastructure/db/PedidoRepository.js';
+import { RabbitMQEventPublisher } from '@/infrastructure/events/RabbitMQEventPublisher.js';
+import { RabbitMQAdapter } from '@/infrastructure/messaging/MockRabbitMQAdapter.js';
+import { MockNotificacaoService } from '@/infrastructure/notifications/MockNotificacaoService.js';
+import { logger } from '@/infrastructure/logger/Logger.js';
 
 describe('Pedido REST API E2E Tests', () => {
   let app: express.Application;

@@ -1,10 +1,10 @@
-import { AdicionarItemUseCase } from '../../../src/application/use-cases/AdicionarItemUseCase.js';
+import { AdicionarItemUseCase } from '@/application/use-cases/AdicionarItemUseCase.js';
 import { 
   AdicionarItemRequest, 
   IPedidoRepository, 
   IEventPublisher 
-} from '../../../src/application/ports/index.js';
-import { Pedido } from '../../../src/domain/entities/Pedido.js';
+} from '@/application/ports/index.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
 
 describe('AdicionarItemUseCase', () => {
   let useCase: AdicionarItemUseCase;

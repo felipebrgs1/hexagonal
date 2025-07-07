@@ -1,7 +1,7 @@
-import { ICalculadoraDesconto } from '../../application/ports/index.js';
-import { CalculadoraDescontoService } from '../../domain/services/CalculadoraDesconto.js';
-import { Money } from '../../domain/value-objects/Money.js';
-import { Pedido } from '../../domain/entities/Pedido.js';
+import { ICalculadoraDesconto } from '@/application/ports/index.js';
+import { CalculadoraDescontoService } from '@/domain/services/CalculadoraDesconto.js';
+import { Money } from '@/domain/value-objects/Money.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
 
 export class CalculadoraDescontoAdapter implements ICalculadoraDesconto {
   private readonly calculadoraService: CalculadoraDescontoService;

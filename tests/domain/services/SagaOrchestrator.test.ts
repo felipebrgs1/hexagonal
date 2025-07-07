@@ -1,9 +1,9 @@
-import { SagaOrchestrator, ISagaStep } from '../../../src/domain/services/SagaOrchestrator.js';
-import { Pedido } from '../../../src/domain/entities/Pedido.js';
-import { Money } from '../../../src/domain/value-objects/Money.js';
-import { ItemPedido } from '../../../src/domain/value-objects/ItemPedido.js';
+import { SagaOrchestrator, ISagaStep } from '@/domain/services/SagaOrchestrator.js';
+import { Pedido } from '@/domain/entities/Pedido.js';
+import { Money } from '@/domain/value-objects/Money.js';
+import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { StatusPedido } from '../../../src/domain/value-objects/StatusPedido.js';
+import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
 
 describe('SagaOrchestrator', () => {
   let sagaOrchestrator: SagaOrchestrator;

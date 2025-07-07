@@ -1,5 +1,5 @@
-import { DomainEvent } from '../../domain/events/DomainEvent.js';
-import { INotificacaoService } from '../../application/ports/index.js';
+import { DomainEvent } from '@/domain/events/DomainEvent.js';
+import { INotificacaoService } from '@/application/ports/index.js';
 import type { ILogger } from '../logger/Logger.js';
 
 export interface IEventHandler {

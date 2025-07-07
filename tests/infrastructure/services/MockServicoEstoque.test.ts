@@ -1,5 +1,5 @@
-import { MockServicoEstoque } from '../../../src/infrastructure/services/MockServicoEstoque.js';
-import { Money } from '../../../src/domain/value-objects/Money.js';
+import { MockServicoEstoque } from '@/infrastructure/services/MockServicoEstoque.js';
+import { Money } from '@/domain/value-objects/Money.js';
 
 describe('MockServicoEstoque', () => {
   let servicoEstoque: MockServicoEstoque;

@@ -1,5 +1,5 @@
-import { ItemPedido, ProdutoInfo } from '../../../src/domain/value-objects/ItemPedido.js';
-import { Money } from '../../../src/domain/value-objects/Money.js';
+import { ItemPedido, ProdutoInfo } from '@/domain/value-objects/ItemPedido.js';
+import { Money } from '@/domain/value-objects/Money.js';
 
 describe('ItemPedido Value Object', () => {
   const produtoValido: ProdutoInfo = {

@@ -1,6 +1,6 @@
-import { DomainEvent } from '../../domain/events/DomainEvent.js';
-import { MockServicoEstoque } from '../services/MockServicoEstoque.js';
-import { StatusPedido } from '../../domain/value-objects/StatusPedido.js';
+import { DomainEvent } from '@/domain/events/DomainEvent.js';
+import { MockServicoEstoque } from '@/infrastructure/services/MockServicoEstoque.js';
+import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
 
 export interface IEventHandler {
   handle(event: DomainEvent): Promise<void>;

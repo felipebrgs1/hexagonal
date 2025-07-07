@@ -9,6 +9,11 @@
     "moduleDetection": "force",
     "jsx": "react-jsx",
     "allowJs": true,
+    // Path mapping
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     // Bundler mode
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { StatusPedido } from '../../domain/value-objects/StatusPedido.js';
-import type { ILogger } from '../../infrastructure/logger/Logger.js';
+import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
+import type { ILogger } from '@/infrastructure/logger/Logger.js';
 
 export interface ValidationError {
   field: string;
