@@ -1,5 +1,5 @@
 # Build stage
-FROM oven/bun:canary-alpine AS builder
+FROM oven/bun:alpine AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY . .
 
 RUN bun run generate
 
-FROM oven/bun:canary-alpine AS production
+FROM oven/bun:alpine AS production
 
 WORKDIR /app
 
