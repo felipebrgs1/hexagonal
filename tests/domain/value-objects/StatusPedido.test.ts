@@ -1,4 +1,5 @@
 import { StatusPedido, StatusPedidoVO } from '@/domain/value-objects/StatusPedido.js';
+import { describe, it, expect } from 'vitest';
 
 describe('StatusPedido Value Object', () => {
   describe('Construction', () => {

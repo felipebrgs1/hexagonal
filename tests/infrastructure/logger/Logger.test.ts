@@ -1,4 +1,5 @@
 import { logger } from '@/infrastructure/logger/Logger';
+import { it, expect, describe } from 'vitest';
 
 describe('Logger', () => {
   it('should log messages without errors', () => {

@@ -4,6 +4,7 @@ import { MockNotificacaoService } from '@/infrastructure/notifications/MockNotif
 import { RabbitMQAdapter } from '@/infrastructure/messaging/MockRabbitMQAdapter.js';
 import { PedidoCriado, ItemAdicionado, StatusAlterado } from '@/domain/events/DomainEvent.js';
 import { logger } from '@/infrastructure/logger/Logger.js';
+import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
 
 describe('Event Messaging Integration Tests', () => {
   let rabbitMQ: RabbitMQAdapter;
@@ -53,7 +54,7 @@ describe('Event Messaging Integration Tests', () => {
       });
 
       // Act & Assert
-      await expect(eventPublisher.publish(event)).resolves.not.toThrow();
+      await eventPublisher.publish(event);
     });
 
     it('should publish multiple events', async () => {
@@ -79,7 +80,7 @@ describe('Event Messaging Integration Tests', () => {
       ];
 
       // Act & Assert
-      await expect(eventPublisher.publishMany(events)).resolves.not.toThrow();
+      await eventPublisher.publishMany(events);
     });
   });
 

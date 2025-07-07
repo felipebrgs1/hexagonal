@@ -3,6 +3,7 @@ import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
 import { Pedido } from '@/domain/entities/Pedido.js';
 import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
 import { Money } from '@/domain/value-objects/Money.js';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 describe('MaquinaEstadosPedido', () => {
   let maquinaEstados: MaquinaEstadosPedido;
@@ -199,7 +200,7 @@ describe('MaquinaEstadosPedido', () => {
 
   describe('Fluxo automático', () => {
     it('deve executar fluxo automático até status desejado', async () => {
-      const mockOnTransition = jest.fn();
+      const mockOnTransition = vi.fn();
       
       await maquinaEstados.executarFluxoAutomatico(
         pedido, 

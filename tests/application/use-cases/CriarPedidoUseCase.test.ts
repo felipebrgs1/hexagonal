@@ -4,25 +4,26 @@ import {
   IPedidoRepository, 
   IEventPublisher 
 } from '@/application/ports/index.js';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 describe('CriarPedidoUseCase', () => {
   let useCase: CriarPedidoUseCase;
-  let mockPedidoRepository: jest.Mocked<IPedidoRepository>;
-  let mockEventPublisher: jest.Mocked<IEventPublisher>;
+  let mockPedidoRepository: vi.Mocked<IPedidoRepository>;
+  let mockEventPublisher: vi.Mocked<IEventPublisher>;
 
   beforeEach(() => {
     mockPedidoRepository = {
-      save: jest.fn(),
-      findById: jest.fn(),
-      findByClienteId: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-      exists: jest.fn()
+      save: vi.fn(),
+      findById: vi.fn(),
+      findByClienteId: vi.fn(),
+      update: vi.fn(),
+      delete: vi.fn(),
+      exists: vi.fn()
     };
 
     mockEventPublisher = {
-      publish: jest.fn(),
-      publishMany: jest.fn()
+      publish: vi.fn(),
+      publishMany: vi.fn()
     };
 
     useCase = new CriarPedidoUseCase(mockPedidoRepository, mockEventPublisher);

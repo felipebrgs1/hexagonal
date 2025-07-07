@@ -1,4 +1,5 @@
 import { EventDispatcher, BaseDomainEvent } from '@/infrastructure/events/EventDispatcher';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 describe('EventDispatcher', () => {
   let eventDispatcher: EventDispatcher;
@@ -11,7 +12,7 @@ describe('EventDispatcher', () => {
     it('should handle events correctly', async () => {
       // Arrange
       const handler = {
-        handle: jest.fn().mockResolvedValue(undefined)
+        handle: vi.fn().mockResolvedValue(undefined)
       };
 
       class TestEvent extends BaseDomainEvent {
@@ -34,10 +35,10 @@ describe('EventDispatcher', () => {
     it('should handle multiple handlers for same event type', async () => {
       // Arrange
       const handler1 = {
-        handle: jest.fn().mockResolvedValue(undefined)
+        handle: vi.fn().mockResolvedValue(undefined)
       };
       const handler2 = {
-        handle: jest.fn().mockResolvedValue(undefined)
+        handle: vi.fn().mockResolvedValue(undefined)
       };
 
       class TestEvent extends BaseDomainEvent {
@@ -61,7 +62,7 @@ describe('EventDispatcher', () => {
     it('should dispatch multiple events', async () => {
       // Arrange
       const handler = {
-        handle: jest.fn().mockResolvedValue(undefined)
+        handle: vi.fn().mockResolvedValue(undefined)
       };
 
       class TestEvent extends BaseDomainEvent {

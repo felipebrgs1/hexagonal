@@ -28,6 +28,8 @@ export interface IServicoEstoque {
   adicionarEstoque(produtoId: string, quantidade: number, observacoes?: string): Promise<void>;
   obterEstoqueProduto(produtoId: string): Promise<IProdutoEstoque | null>;
   listarMovimentos(produtoId?: string): Promise<IMovimentoEstoque[]>;
+  processarPagamento(pedidoId: string, valor: number, metodoPagamento: string): Promise<boolean>;
+  estornarPagamento(pedidoId: string): Promise<void>;
 }
 
 export class MockServicoEstoque implements IServicoEstoque {
@@ -45,6 +47,15 @@ export class MockServicoEstoque implements IServicoEstoque {
   private inicializarEstoqueMock(): void {
     // Produtos de exemplo
     const produtos: IProdutoEstoque[] = [
+      {
+        id: 'produto-1',
+        nome: 'Produto 1',
+        quantidadeDisponivel: 100,
+        quantidadeReservada: 0,
+        precoUnitario: new Money(50, 'BRL'),
+        categoria: 'Categoria 1',
+        ativo: true
+      },
       {
         id: 'prod-1',
         nome: 'Produto A',
@@ -252,6 +263,32 @@ export class MockServicoEstoque implements IServicoEstoque {
     return [...this.movimentos];
   }
 
+  async processarPagamento(pedidoId: string, valor: number, metodoPagamento: string): Promise<boolean> {
+    await this.simularDelay();
+
+    if (this.simularErros && Math.random() < 0.05) {
+      throw new Error(`Erro ao processar pagamento de ${valor} via ${metodoPagamento} para pedido ${pedidoId}`);
+    }
+
+    // Simular processamento de pagamento
+    if (valor <= 0) {
+      return false;
+    }
+
+    if (!['cartao', 'pix', 'dinheiro'].includes(metodoPagamento)) {
+      return false;
+    }
+
+    // Simular sucesso (95% de taxa de sucesso)
+    return Math.random() < 0.95;
+  }
+
+  async estornarPagamento(pedidoId: string): Promise<void> {
+    await this.simularDelay();
+    console.log(`Estornando pagamento do pedido ${pedidoId}`);
+    // Lógica de estorno aqui
+  }
+
   // Métodos auxiliares
   private registrarMovimento(movimento: IMovimentoEstoque): void {
     this.movimentos.push(movimento);
@@ -307,30 +344,19 @@ export class MockServicoEstoque implements IServicoEstoque {
 
   // Método para compensação em caso de erro
   async compensarOperacao(produtoId: string, pedidoId: string): Promise<void> {
-    console.log(`Iniciando compensação para produto ${produtoId} do pedido ${pedidoId}`);
-    
-    // Encontrar movimentos relacionados ao pedido
-    const movimentosPedido = this.movimentos.filter(
-      m => m.pedidoId === pedidoId && m.produtoId === produtoId
+    await this.simularDelay();
+
+    const movimentosParaReverter = this.movimentos.filter(mov => 
+      mov.produtoId === produtoId && mov.pedidoId === pedidoId
     );
 
-    // Reverter movimentos em ordem inversa
-    for (const movimento of movimentosPedido.reverse()) {
-      try {
-        switch (movimento.tipo) {
-          case 'RESERVA':
-            await this.liberarReserva(produtoId, movimento.quantidade, pedidoId);
-            break;
-          case 'SAIDA':
-            await this.adicionarEstoque(produtoId, movimento.quantidade, `Compensação - reversão de saída`);
-            break;
-          // LIBERACAO e ENTRADA não precisam de compensação
-        }
-      } catch (error) {
-        console.error(`Erro na compensação do movimento ${movimento.id}:`, error);
+    for (const movimento of movimentosParaReverter) {
+      // Reverter o movimento original
+      if (movimento.tipo === 'RESERVA') {
+        await this.liberarReserva(produtoId, movimento.quantidade, pedidoId);
+      } else if (movimento.tipo === 'SAIDA') {
+        await this.adicionarEstoque(produtoId, movimento.quantidade, `Compensação do pedido ${pedidoId}`);
       }
     }
-
-    console.log(`Compensação concluída para produto ${produtoId} do pedido ${pedidoId}`);
   }
 }

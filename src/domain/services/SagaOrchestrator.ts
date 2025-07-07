@@ -2,6 +2,7 @@ import { Pedido } from '../entities/Pedido.js';
 import { StatusPedido } from '../value-objects/StatusPedido.js';
 import { MaquinaEstadosPedido } from './MaquinaEstadosPedido.js';
 import { DomainEvent } from '../events/DomainEvent.js';
+import { IServicoEstoque, MockServicoEstoque } from '@/infrastructure/services/MockServicoEstoque.js';
 
 export interface ISagaStep {
   id: string;
@@ -22,10 +23,12 @@ export interface SagaContext {
 export class SagaOrchestrator {
   private readonly maquinaEstados: MaquinaEstadosPedido;
   private readonly steps: Map<string, ISagaStep>;
+  private readonly estoqueService: IServicoEstoque;
 
-  constructor() {
+  constructor(estoqueService: IServicoEstoque = new MockServicoEstoque()) {
     this.maquinaEstados = new MaquinaEstadosPedido();
     this.steps = new Map();
+    this.estoqueService = estoqueService;
     this.configurarStepsBasicos();
   }
 
@@ -66,7 +69,7 @@ export class SagaOrchestrator {
       execute: async (context: SagaContext) => {
         // Simular verificação de estoque
         for (const item of context.pedido.itens) {
-          const estoqueDisponivel = await this.verificarEstoqueProduto(item.produto.id, item.quantidade);
+          const estoqueDisponivel = await this.estoqueService.verificarDisponibilidade(item.produto.id, item.quantidade);
           if (!estoqueDisponivel) {
             throw new Error(`Estoque insuficiente para produto ${item.produto.nome}`);
           }
@@ -76,7 +79,7 @@ export class SagaOrchestrator {
       compensate: async (context: SagaContext) => {
         // Compensação: liberar estoque reservado
         for (const item of context.pedido.itens) {
-          await this.liberarEstoqueProduto(item.produto.id, item.quantidade);
+          await this.estoqueService.liberarReserva(item.produto.id, item.quantidade, context.pedido.id);
         }
         console.log(`Compensação: Estoque liberado para pedido ${context.pedido.id}`);
       }
@@ -90,7 +93,7 @@ export class SagaOrchestrator {
         const valorTotal = context.pedido.calcularTotal();
         const metodoPagamento = context.parameters.metodoPagamento as string || 'cartao';
         
-        const pagamentoAprovado = await this.processarPagamento(
+        const pagamentoAprovado = await this.estoqueService.processarPagamento(
           context.pedido.id, 
           valorTotal.valor, 
           metodoPagamento
@@ -104,7 +107,7 @@ export class SagaOrchestrator {
       },
       compensate: async (context: SagaContext) => {
         // Compensação: estornar pagamento
-        await this.estornarPagamento(context.pedido.id);
+        await this.estoqueService.estornarPagamento(context.pedido.id);
         console.log(`Compensação: Pagamento estornado para pedido ${context.pedido.id}`);
       }
     });
@@ -115,14 +118,14 @@ export class SagaOrchestrator {
       name: 'Reservar Estoque',
       execute: async (context: SagaContext) => {
         for (const item of context.pedido.itens) {
-          await this.reservarEstoqueProduto(item.produto.id, item.quantidade);
+          await this.estoqueService.reservarEstoque(item.produto.id, item.quantidade, context.pedido.id);
         }
         console.log(`Estoque reservado para pedido ${context.pedido.id}`);
       },
       compensate: async (context: SagaContext) => {
         // Compensação: liberar estoque reservado
         for (const item of context.pedido.itens) {
-          await this.liberarEstoqueProduto(item.produto.id, item.quantidade);
+          await this.estoqueService.liberarReserva(item.produto.id, item.quantidade, context.pedido.id);
         }
         console.log(`Compensação: Reserva de estoque cancelada para pedido ${context.pedido.id}`);
       }
@@ -404,43 +407,6 @@ export class SagaOrchestrator {
   }
 
   // Mock methods para simular serviços externos
-  private async verificarEstoqueProduto(produtoId: string, quantidade: number): Promise<boolean> {
-    // Simular verificação de estoque
-    console.log(`Verificando estoque: ${produtoId} - Quantidade: ${quantidade}`);
-    return Math.random() > 0.1; // 90% de chance de ter estoque
-  }
-
-  private async reservarEstoqueProduto(produtoId: string, quantidade: number): Promise<void> {
-    console.log(`Reservando estoque: ${produtoId} - Quantidade: ${quantidade}`);
-    // Simular reserva
-  }
-
-  private async liberarEstoqueProduto(produtoId: string, quantidade: number): Promise<void> {
-    console.log(`Liberando estoque: ${produtoId} - Quantidade: ${quantidade}`);
-    // Simular liberação
-  }
-
-  private async processarPagamento(pedidoId: string, valor: number, metodo: string): Promise<boolean> {
-    console.log(`Processando pagamento: R$ ${valor} via ${metodo} para pedido ${pedidoId}`);
-    return Math.random() > 0.05; // 95% de chance de aprovação
-  }
-
-  private async estornarPagamento(pedidoId: string): Promise<void> {
-    console.log(`Estornando pagamento para pedido ${pedidoId}`);
-    // Simular estorno
-  }
-
-  private async notificarEquipeProducao(pedidoId: string): Promise<void> {
-    console.log(`Notificando equipe de produção para pedido ${pedidoId}`);
-    // Simular notificação
-  }
-
-  private async gerarEtiquetaEnvio(pedidoId: string): Promise<string> {
-    const codigo = `BR${Date.now()}${Math.random().toString(36).substring(7).toUpperCase()}`;
-    console.log(`Etiqueta gerada para pedido ${pedidoId}: ${codigo}`);
-    return codigo;
-  }
-
   private async registrarEnvio(pedidoId: string, codigoRastreamento: string): Promise<void> {
     console.log(`Registrando envio: pedido ${pedidoId}, código ${codigoRastreamento}`);
     // Simular registro

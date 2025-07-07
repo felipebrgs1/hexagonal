@@ -5,6 +5,7 @@ import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
 import { Money } from '@/domain/value-objects/Money.js';
 import { StatusPedidoVO } from '@/domain/value-objects/StatusPedido.js';
 import { logger } from '@/infrastructure/logger/Logger.js';
+import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
 
 describe('PedidoRepository Integration Tests', () => {
   let prisma: PrismaClient;

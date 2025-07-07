@@ -2,6 +2,7 @@ import { Pedido } from '@/domain/entities/Pedido.js';
 import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
 import { Money } from '@/domain/value-objects/Money.js';
 import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
+import { describe, it, expect } from 'vitest';
 
 describe('Pedido Entity', () => {
   const produtoExemplo = {

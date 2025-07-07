@@ -1,5 +1,6 @@
 import { MockServicoEstoque } from '@/infrastructure/services/MockServicoEstoque.js';
 import { Money } from '@/domain/value-objects/Money.js';
+import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('MockServicoEstoque', () => {
   let servicoEstoque: MockServicoEstoque;
@@ -46,9 +47,7 @@ describe('MockServicoEstoque', () => {
 
   describe('reservarEstoque', () => {
     it('deve reservar estoque com sucesso', async () => {
-      await expect(
-        servicoEstoque.reservarEstoque('prod-1', 10, 'pedido-123')
-      ).resolves.not.toThrow();
+      await servicoEstoque.reservarEstoque('prod-1', 10, 'pedido-123');
 
       const produto = await servicoEstoque.obterEstoqueProduto('prod-1');
       expect(produto?.quantidadeReservada).toBe(10);
@@ -83,18 +82,14 @@ describe('MockServicoEstoque', () => {
     });
 
     it('deve liberar reserva com sucesso', async () => {
-      await expect(
-        servicoEstoque.liberarReserva('prod-1', 10, 'pedido-123')
-      ).resolves.not.toThrow();
+      await servicoEstoque.liberarReserva('prod-1', 10, 'pedido-123');
 
       const produto = await servicoEstoque.obterEstoqueProduto('prod-1');
       expect(produto?.quantidadeReservada).toBe(10); // 20 - 10
     });
 
     it('deve tratar tentativa de liberar mais que reservado', async () => {
-      await expect(
-        servicoEstoque.liberarReserva('prod-1', 30, 'pedido-123') // Reservou apenas 20
-      ).resolves.not.toThrow();
+      await servicoEstoque.liberarReserva('prod-1', 30, 'pedido-123'); // Reservou apenas 20
 
       const produto = await servicoEstoque.obterEstoqueProduto('prod-1');
       expect(produto?.quantidadeReservada).toBe(0); // Deve zerar a reserva
@@ -277,15 +272,21 @@ describe('MockServicoEstoque', () => {
       // Tentar algumas operações que podem falhar
       let errosEncontrados = 0;
       
-      for (let i = 0; i < 20; i++) {
+      // Reduzir o número de tentativas mas usar Promise.all para executar em paralelo
+      const tentativas = Array.from({ length: 50 }, async () => {
         try {
           await servicoComErros.verificarDisponibilidade('prod-1', 1);
+          return false; // sem erro
         } catch {
-          errosEncontrados++;
+          return true; // erro encontrado
         }
-      }
+      });
       
-      // Com 10% de chance de erro, deve ter pelo menos alguns erros em 20 tentativas
+      const resultados = await Promise.all(tentativas);
+      errosEncontrados = resultados.filter(Boolean).length;
+      
+      // Com 10% de chance de erro em 50 tentativas, estatisticamente deve haver pelo menos alguns erros
+      // A probabilidade de não haver nenhum erro em 50 tentativas é (0.9)^50 ≈ 0.005 (muito baixa)
       expect(errosEncontrados).toBeGreaterThan(0);
     });
   });

@@ -1,5 +1,6 @@
 import { ItemPedido, ProdutoInfo } from '@/domain/value-objects/ItemPedido.js';
 import { Money } from '@/domain/value-objects/Money.js';
+import { describe, it, expect } from 'vitest';
 
 describe('ItemPedido Value Object', () => {
   const produtoValido: ProdutoInfo = {

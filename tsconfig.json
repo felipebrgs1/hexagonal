@@ -12,7 +12,9 @@
     // Path mapping
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
     // Bundler mode
     "moduleResolution": "bundler",
@@ -30,6 +32,9 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noPropertyAccessFromIndexSignature": false,
+    "types": [
+      "vitest/globals"
+    ]
   }
 }

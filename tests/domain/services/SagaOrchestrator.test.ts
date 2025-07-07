@@ -4,13 +4,17 @@ import { Money } from '@/domain/value-objects/Money.js';
 import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { MockServicoEstoque } from '@/infrastructure/services/MockServicoEstoque.js';
 
 describe('SagaOrchestrator', () => {
   let sagaOrchestrator: SagaOrchestrator;
   let pedido: Pedido;
+  let mockEstoqueService: MockServicoEstoque;
 
   beforeEach(() => {
-    sagaOrchestrator = new SagaOrchestrator();
+    mockEstoqueService = new MockServicoEstoque();
+    sagaOrchestrator = new SagaOrchestrator(mockEstoqueService);
     pedido = Pedido.criar('cliente-123', 'Pedido de teste');
     
     // Adicionar um item para tornar o pedido válido
@@ -61,8 +65,10 @@ describe('SagaOrchestrator', () => {
         errors: []
       };
 
+      vi.spyOn(mockEstoqueService, 'verificarDisponibilidade').mockResolvedValue(true);
+
       await expect(sagaOrchestrator.executarStep('verificar-estoque', context))
-        .resolves.not.toThrow();
+        .resolves.toBeUndefined();
       
       expect(context.executedSteps).toContain('verificar-estoque');
     });
@@ -76,8 +82,10 @@ describe('SagaOrchestrator', () => {
         errors: []
       };
 
+      vi.spyOn(mockEstoqueService, 'processarPagamento').mockResolvedValue(true);
+
       await expect(sagaOrchestrator.executarStep('processar-pagamento', context))
-        .resolves.not.toThrow();
+        .resolves.toBeUndefined();
       
       expect(context.executedSteps).toContain('processar-pagamento');
     });
@@ -263,6 +271,9 @@ describe('SagaOrchestrator', () => {
         events: [],
         errors: []
       };
+
+      // Mockar para garantir sucesso
+      vi.spyOn(mockEstoqueService, 'processarPagamento').mockResolvedValue(true);
 
       // Executar steps
       await sagaOrchestrator.executarStep('confirmar-pedido', context);

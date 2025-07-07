@@ -2,6 +2,7 @@ import { EstoqueEventHandler } from '@/infrastructure/events/EstoqueEventHandler
 import { MockServicoEstoque } from '@/infrastructure/services/MockServicoEstoque.js';
 import { DomainEvent } from '@/domain/events/DomainEvent.js';
 import { StatusPedido } from '@/domain/value-objects/StatusPedido.js';
+import { describe, it, expect, beforeEach } from 'vitest';
 
 // Helper para criar eventos de teste
 class TestDomainEvent implements DomainEvent {
@@ -191,7 +192,7 @@ describe('EstoqueEventHandler', () => {
       });
 
       // Não deve lançar erro
-      await expect(handler.handle(evento)).resolves.not.toThrow();
+      await handler.handle(evento);
     });
   });
 
@@ -230,7 +231,7 @@ describe('EstoqueEventHandler', () => {
       });
 
       // Não deve lançar erro mesmo com produto inexistente
-      await expect(handler.handle(evento)).resolves.not.toThrow();
+      await handler.handle(evento);
     });
   });
 
@@ -372,7 +373,7 @@ describe('EstoqueEventHandler', () => {
         pedidoId: 'pedido-123'
       });
 
-      await expect(handler.handle(evento)).resolves.not.toThrow();
+      await handler.handle(evento);
     });
   });
 });

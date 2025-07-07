@@ -2,6 +2,7 @@ import { CalculadoraDescontoAdapter } from '@/infrastructure/discount/Calculador
 import { Money } from '@/domain/value-objects/Money.js';
 import { Pedido } from '@/domain/entities/Pedido.js';
 import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
+import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('CalculadoraDescontoAdapter', () => {
   let adapter: CalculadoraDescontoAdapter;

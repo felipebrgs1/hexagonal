@@ -12,6 +12,7 @@ import { RabbitMQEventPublisher } from '@/infrastructure/events/RabbitMQEventPub
 import { RabbitMQAdapter } from '@/infrastructure/messaging/MockRabbitMQAdapter.js';
 import { MockNotificacaoService } from '@/infrastructure/notifications/MockNotificacaoService.js';
 import { logger } from '@/infrastructure/logger/Logger.js';
+import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
 
 describe('Pedido REST API E2E Tests', () => {
   let app: express.Application;

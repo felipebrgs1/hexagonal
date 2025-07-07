@@ -5,6 +5,7 @@ import {
   StatusAlterado,
   PedidoConfirmado 
 } from '@/domain/events/DomainEvent.js';
+import { describe, it, expect } from 'vitest';
 
 describe('Domain Events', () => {
   describe('BaseDomainEvent', () => {

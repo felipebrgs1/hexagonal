@@ -1,4 +1,5 @@
 import { Money, Moeda } from '@/domain/value-objects/Money.js';
+import { describe, it, expect } from 'vitest';
 
 describe('Money Value Object', () => {
   describe('Construction', () => {

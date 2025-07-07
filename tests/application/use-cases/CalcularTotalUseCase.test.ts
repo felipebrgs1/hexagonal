@@ -7,27 +7,28 @@ import {
 import { Pedido } from '@/domain/entities/Pedido.js';
 import { ItemPedido } from '@/domain/value-objects/ItemPedido.js';
 import { Money } from '@/domain/value-objects/Money.js';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 describe('CalcularTotalUseCase', () => {
   let useCase: CalcularTotalUseCase;
-  let mockPedidoRepository: jest.Mocked<IPedidoRepository>;
-  let mockCalculadoraDesconto: jest.Mocked<ICalculadoraDesconto>;
+  let mockPedidoRepository: vi.Mocked<IPedidoRepository>;
+  let mockCalculadoraDesconto: vi.Mocked<ICalculadoraDesconto>;
 
   beforeEach(() => {
     mockPedidoRepository = {
-      save: jest.fn(),
-      findById: jest.fn(),
-      findByClienteId: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-      exists: jest.fn()
+      save: vi.fn(),
+      findById: vi.fn(),
+      findByClienteId: vi.fn(),
+      update: vi.fn(),
+      delete: vi.fn(),
+      exists: vi.fn()
     };
 
     mockCalculadoraDesconto = {
-      calcularDescontoPorQuantidade: jest.fn(),
-      calcularDescontoPorValorTotal: jest.fn(),
-      aplicarCupomDesconto: jest.fn(),
-      calcularDescontoTotal: jest.fn()
+      calcularDescontoPorQuantidade: vi.fn(),
+      calcularDescontoPorValorTotal: vi.fn(),
+      aplicarCupomDesconto: vi.fn(),
+      calcularDescontoTotal: vi.fn()
     };
 
     useCase = new CalcularTotalUseCase(mockPedidoRepository, mockCalculadoraDesconto);
