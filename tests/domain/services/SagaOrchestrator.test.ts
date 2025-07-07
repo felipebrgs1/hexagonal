@@ -93,6 +93,8 @@ describe('SagaOrchestrator', () => {
 
   describe('Execução de saga completa', () => {
     it('deve executar saga de confirmação de pedido', async () => {
+      vi.spyOn(mockEstoqueService, 'verificarDisponibilidade').mockResolvedValue(true);
+      vi.spyOn(mockEstoqueService, 'processarPagamento').mockResolvedValue(true);
       const resultado = await sagaOrchestrator.executarSaga('confirmar-pedido-completo', pedido, {
         metodoPagamento: 'cartao'
       });
@@ -242,6 +244,8 @@ describe('SagaOrchestrator', () => {
 
   describe('Rollback e compensação', () => {
     it('deve executar compensação para steps já executados', async () => {
+      vi.spyOn(mockEstoqueService, 'verificarDisponibilidade').mockResolvedValue(true);
+      vi.spyOn(mockEstoqueService, 'processarPagamento').mockResolvedValue(true);
       const context = {
         pedido,
         parameters: { metodoPagamento: 'cartao' },
@@ -264,6 +268,8 @@ describe('SagaOrchestrator', () => {
     });
 
     it('deve executar compensação parcial até step específico', async () => {
+      vi.spyOn(mockEstoqueService, 'verificarDisponibilidade').mockResolvedValue(true);
+      vi.spyOn(mockEstoqueService, 'processarPagamento').mockResolvedValue(true);
       const context = {
         pedido,
         parameters: {},
@@ -271,9 +277,6 @@ describe('SagaOrchestrator', () => {
         events: [],
         errors: []
       };
-
-      // Mockar para garantir sucesso
-      vi.spyOn(mockEstoqueService, 'processarPagamento').mockResolvedValue(true);
 
       // Executar steps
       await sagaOrchestrator.executarStep('confirmar-pedido', context);
